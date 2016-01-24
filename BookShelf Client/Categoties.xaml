@@ -1,0 +1,79 @@
+﻿<Page x:Class="BookShelf_Client.Categoties"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:viewmodel="clr-namespace:BookShelf_Client"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:viewModel="clr-namespace:BookShelf_Client.ViewModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="500"
+	Title="Categoties"
+    WindowTitle="Categories"
+    ShowsNavigationUI="False">
+    <Page.DataContext>
+        <viewModel:CategoryViewModel/>
+    </Page.DataContext>
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources\Styles\DataTemplate.xaml"/>
+                <ResourceDictionary Source="Resources\Styles\ButtonsResourseDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MaxWidth="200"></ColumnDefinition>
+            <ColumnDefinition Width ="5"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer VerticalScrollBarVisibility='Hidden' HorizontalScrollBarVisibility='Hidden' Grid.Column="0">
+            <ListBox ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}" Style="{StaticResource ListOfCategorieStyle}">
+                <ListBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Delete Category" Command="{Binding DeleteCategoryCommand}">
+                            <MenuItem.Icon>
+                                <Image Source="/Resources/Images/cut3.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </ListBox.ContextMenu>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Name="CategoryName"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="{Binding Path=Name}" Height="50" Width="200" FontSize="14" FontFamily="Bell MT" Foreground="SaddleBrown" Margin="0,0,0,0">
+                            <Label.Background>
+                                <ImageBrush ImageSource="Resources/Images/Univwersal Panel.png"/>
+                            </Label.Background>
+                        </Label>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+        <GridSplitter Grid.Row="0" Grid.Column="1" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Center"></GridSplitter>
+        <ListBox Grid.Row="0" Grid.Column="2" Width="auto" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Books}" SelectedItem="{Binding SelectedBookInCategory}" AllowDrop="True" Drop="DropFileInCategory" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Style="{StaticResource MyBooksListBoxStyle}">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <StackPanel Orientation="Vertical" Margin="30,-15,1,1">
+                            <Image Source="{Binding PathToBookImg}" Width="120" Height="250"/>
+                            <TextBlock Text="{Binding Name}" FontWeight="Normal" MaxWidth="120"/>
+                            </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <Separator VerticalAlignment="Top" Width="Auto" Height="4" Background="Teal" BorderThickness="5"/>
+            <Button Style="{StaticResource CategoryStyleButton}" Width="30" Height="30" HorizontalAlignment="Left" Content="+" Command="{Binding AddCategoryCommand}"></Button>
+        </StackPanel>
+    </Grid>
+</Page>

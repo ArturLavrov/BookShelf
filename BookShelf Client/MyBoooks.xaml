@@ -1,0 +1,62 @@
+﻿<controls:MetroWindow x:Class="BookShelf_Client.MyBoooks"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:viewmodel="clr-namespace:BookShelf_Client"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:viewModel="clr-namespace:BookShelf_Client.ViewModel"
+        Title="MyBooks"
+        Icon="Resources/Images/ico.png"
+        BorderBrush="{DynamicResource AccentColorBrush}"
+        BorderThickness="2">
+    <Window.DataContext>
+        <viewModel:MyBooksViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources\Styles\ButtonsResourseDictionary.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Brown.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="1" Height="Auto" BorderThickness="0">
+            <Menu.Background>
+                <ImageBrush ImageSource="Resources/Images/Univwersal Panel.png"/>
+            </Menu.Background>
+            <Menu.ItemsPanel >
+                <ItemsPanelTemplate>
+                    <DockPanel  HorizontalAlignment="Stretch"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem Style="{StaticResource MunuItemStyle}"   Header="MyBooks" Command="{Binding GoToMyBooksCommand}" CommandParameter="{Binding ElementName=BookShelFrame}" />
+            <MenuItem Style="{StaticResource MunuItemStyle}"   Header="All Books"  Command="{Binding GoToAllBoooksCommand}" CommandParameter="{Binding ElementName=BookShelFrame}"/>
+            <MenuItem Style="{StaticResource MunuItemStyle}"   Header="Categories" Command="{Binding GoToCategoriesCommand}" CommandParameter="{Binding ElementName=BookShelFrame}"/>
+            <MenuItem Style="{StaticResource MunuItemStyle}"   Header="Read Books" Command="{Binding GoToReadBooksCommand}" CommandParameter="{Binding ElementName=BookShelFrame}" />
+            <MenuItem Style="{StaticResource MunuItemStyle}"   Header="Help" Command="{Binding GoToHelpCommand}" CommandParameter="{Binding ElementName=BookShelFrame}" />
+            <MenuItem Command="{Binding GoToReadingListCommand}" >
+                <MenuItem.Header>
+                    <StackPanel>
+                        <Image  Width="20" Height="20" Source="Resources/Images/write12.png"/>
+                    </StackPanel>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem HorizontalAlignment="Right">
+                <MenuItem.Header>
+                    <WrapPanel>
+                        <Label Content="{Binding Path=User}" Foreground="SaddleBrown" FontFamily="Bodoni MT" FontSize="18"/>
+                        <Image Width="30" Height="20" Source="Resources/Images/network60(2).png"/>
+                    </WrapPanel>
+                </MenuItem.Header>
+            </MenuItem>
+        </Menu>
+        <Frame Name="BookShelFrame"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"  Grid.Row="2" Content="Frame" NavigationUIVisibility="Hidden" Source="MyBooks.xaml"/>
+    </Grid>
+</controls:MetroWindow>

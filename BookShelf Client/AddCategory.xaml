@@ -1,0 +1,26 @@
+<Window x:Class="BookShelf_Client.AddCategory"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewmodel="clr-namespace:BookShelf_Client"
+        xmlns:viewModel="clr-namespace:BookShelf_Client.ViewModel"
+        Title="AddCategory" Height="300" Width="300"
+        ResizeMode='NoResize'>
+    <Window.DataContext>
+        <viewModel:AddCategoryViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Row="0" Grid.ColumnSpan="2" Source="C:\Users\Artur\Desktop\Projects\Current\BookShelfProject\BookShelf Project\Design\BookShelf Desktop Design\books-on-a-shelf.png" Width="300"/>
+        <Label Grid.Row="1" Grid.Column="0" Width="110" Height="30" Content="Category Name" FontSize="14"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Width="130" Height="30" Text="{Binding CategoryName}"/>
+        <Button Grid.Row="2" Grid.Column="1" Width="100" Height="40" Content="Add Category" Command="{Binding AddCategoryCommand}"/>
+    </Grid>
+</Window>
