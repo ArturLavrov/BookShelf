@@ -7,5 +7,5 @@ and of course create the shelf of your favorite books.
 Also, using BookShelf you can create your own personal reading list.
 With the help of the reading list, you can always keep in mind books that you want to read.
 <br>
-Your comments and questions are welcome: <b>bookshelfteam2014@gmail.com</b>
+Your comments and questions are wellcome: <b>bookshelfteam2014@gmail.com</b>
 </p>
