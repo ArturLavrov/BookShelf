@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using BookShelf.BL;
+using BookShelf.BL.Services;
 using BookShelf.DAL;
 using BookShelf.Entities;
 using BookShelf.IoC;

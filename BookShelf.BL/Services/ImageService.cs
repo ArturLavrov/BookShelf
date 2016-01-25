@@ -1,8 +1,9 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using System.Windows.Forms;
 using GhostscriptSharp;
 
-namespace BookShelf.BL
+namespace BookShelf.BL.Services
 {
     public class ImageService
     {
@@ -14,6 +15,18 @@ namespace BookShelf.BL
             GhostscriptWrapper.GeneratePageThumb(pathToFile,
               path, 1, 120, 250);
             return path;
+        }
+
+        public void DeleteBookPicture(string picturepath)
+        {
+            try
+            {
+                File.Delete(picturepath);
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

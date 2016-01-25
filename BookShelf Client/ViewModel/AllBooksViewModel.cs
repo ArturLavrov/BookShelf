@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Input;
 using BookShelf.BL;
+using BookShelf.BL.Services;
 using BookShelf.DAL;
 using BookShelf.Entities;
 using BookShelf.IoC;
@@ -146,6 +147,8 @@ namespace BookShelf_Client.ViewModel
         {
             _bookRepository.Delete(_selectedBook);
             _bookRepository.SaveChanges();
+            ImageService service = new ImageService();
+            service.DeleteBookPicture(_selectedBook.PathToBookImg);
             var allbooks = _bookRepository.GetAll();
             Books = new ObservableCollection<Book>(allbooks);
         }
