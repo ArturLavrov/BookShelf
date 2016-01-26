@@ -38,11 +38,12 @@
                 </ListBox.ItemsPanel>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <StackPanel Orientation="Vertical" Margin="30,-15,1,1">
-                                <Image Source="{Binding PathToBookImg}" Width="120" Height="250"/>
+                        <StackPanel Orientation="Horizontal" Margin="30,10,30,10">
+                            <Image Source="{Binding PathToBookImg}" Width="120" Height="180"/>
+                            <StackPanel Margin="2,6">
+                                <Button Margin="0"  Height="20" Width="20"></Button>
                             </StackPanel>
-                        </Grid>
+                        </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
