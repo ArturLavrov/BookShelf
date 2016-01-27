@@ -311,7 +311,9 @@
   <ItemGroup>
     <Resource Include="Resources\Images\cloud127.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Images\delete30.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\cut3.png" />
   </ItemGroup>
@@ -355,6 +357,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\ico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\proba1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

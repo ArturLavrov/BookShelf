@@ -20,17 +20,18 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/DataTemplate.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BooleanVisibleConverter" />
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\Artur\Desktop\Projects\Current\BookShelfProject\BookShelf Project\Design\BookShelf Desktop Design\proba1.png" Stretch="Fill"/>
+            <ImageBrush ImageSource="Resources/Images/proba1.png" Stretch="Fill"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0">
-            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Style="{StaticResource MyBooksListBoxStyle}" SelectedItem="{Binding SelectedBook}"  Background="Transparent" BorderThickness="0" ItemsSource="{Binding Books}">
+            <ListBox Name="FavoriteBooksListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Style="{StaticResource MyBooksListBoxStyle}" SelectedItem="{Binding SelectedBook}"  Background="Transparent" BorderThickness="0" ItemsSource="{Binding Books}">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal"/>
@@ -41,7 +42,16 @@
                         <StackPanel Orientation="Horizontal" Margin="30,10,30,10">
                             <Image Source="{Binding PathToBookImg}" Width="120" Height="180"/>
                             <StackPanel Margin="2,6">
-                                <Button Margin="0"  Height="20" Width="20"></Button>
+                                <Button Name="DeleteBookBtn" Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected, Converter={StaticResource BooleanVisibleConverter}}"  Margin="0"  Height="20" Width="20" Background="Transparent">
+                                    <Button.DataContext>
+                                        <viewModel:MyBooksViewModel/>
+                                    </Button.DataContext>
+                                    <Button.Template>
+                                        <ControlTemplate>
+                                            <Image Source="/Resources/Images/delete30.png"/>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>

@@ -67,6 +67,14 @@ namespace BookShelf_Client.ViewModel
         {
             Application.Current.MainWindow.Close();
         }
+
+        private void DeleteBookFromFavorite()
+        {
+            
+            _selectedBook.IsFavorite = false;
+            _bookRepository.Update(_selectedBook);
+            _bookRepository.SaveChanges();
+        }
         private void ReadBook()
         {
             switch (_selectedBook.FileType)
@@ -114,6 +122,11 @@ namespace BookShelf_Client.ViewModel
         {
 
             get { return new RelayCommand<Frame>(GoToReadBooks); }
+        }
+
+        public ICommand DeleteBookFromFavoriteCommand
+        {
+            get { return  new RelayCommand(d => DeleteBookFromFavorite());}
         }
 
         public ICommand GoToAllBoooksCommand
