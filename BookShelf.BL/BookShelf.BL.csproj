@@ -60,6 +60,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Services\BookServices.cs" />
     <Compile Include="Readers\DJVuReader.cs" />
     <Compile Include="IAbstractReader.cs" />
     <Compile Include="Services\ImageService.cs" />
