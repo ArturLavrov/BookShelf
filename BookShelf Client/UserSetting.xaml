@@ -3,6 +3,44 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="UserSetting" Height="300" Width="300">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image>
+            
+        </Image>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label>Name</Label>
+            <TextBox Grid.Row="0" Grid.Column="1">Artur Lavrov</TextBox>
+            <Label Grid.Row="1" Grid.Column="0">E-mail</Label>
+            <TextBox Grid.Row="1" Grid.Column="1">bookshelf@gmail.com</TextBox>
+            <Label Grid.Row="2" Grid.Column="0">Password</Label>
+            <PasswordBox Grid.Row="2" Grid.Column="1"></PasswordBox>
+        </Grid>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+            <GroupBox>
+                <StackPanel>
+                    <CheckBox
+	    Content="CheckBox"
+	    HorizontalAlignment="Left"
+	    Margin="10,10,0,0"
+	    VerticalAlignment="Top"/>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
     </Grid>
 </Window>

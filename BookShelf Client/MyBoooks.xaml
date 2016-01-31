@@ -48,7 +48,7 @@
                     </StackPanel>
                 </MenuItem.Header>
             </MenuItem>
-            <MenuItem HorizontalAlignment="Right">
+            <MenuItem HorizontalAlignment="Right" Command="{Binding GoToUserSettingsCommand}">
                 <MenuItem.Header>
                     <WrapPanel>
                         <Label Content="{Binding Path=User}" Foreground="SaddleBrown" FontFamily="Bodoni MT" FontSize="18"/>

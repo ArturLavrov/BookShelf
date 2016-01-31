@@ -117,7 +117,11 @@ namespace BookShelf_Client.ViewModel
             ReadingList f2 = new ReadingList();
             f2.Show();
         }
-
+        private void GoToUserSettings()
+        {
+            UserSetting settingsForm = new UserSetting();
+            settingsForm.Show();
+        }
         public ICommand GoToReadBooksCommand
         {
 
@@ -147,6 +151,11 @@ namespace BookShelf_Client.ViewModel
         public ICommand GoToHelpCommand
         {
             get { return new RelayCommand<Frame>(GoToHelp);}
+        }
+
+        public ICommand GoToUserSettingsCommand
+        {
+            get { return new RelayCommand(g => GoToUserSettings()); }
         }
         public ICommand CloseApplicationCommand
         {
