@@ -1,20 +1,25 @@
-﻿using System.Windows.Forms;
+﻿using System.IO;
+using System.Windows.Forms;
 
 namespace BookShelf.BL.Services
 {
     public class BookServices
     {
-        private void MoveBookToBookShelfFolder(string sourseFile)
+        public string  MoveBookToBookShelfFolder(string sourseFile)
         {
-            string destinationFolder = @"D:\BookShelfStorage";
+            string filename = Path.GetFileName(sourseFile);
+            string destinationFile = @"D:\BookShelfStorage" + @"\" + filename;
+           
             try
             {
-                System.IO.File.Move(sourseFile, destinationFolder);
+                File.Move(sourseFile, destinationFile);
             }
-            catch (System.IO.IOException ex)
+            catch (IOException ex)
             {
                 MessageBox.Show(ex.Message);
             }
+           
+            return destinationFile;
         }
     }
 }

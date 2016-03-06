@@ -31,9 +31,10 @@ namespace BookShelf_Client
             //TO DO think how to improve quality of this solution.
             //Perhaps create some buffer 
             //like LocalStorage or Cookies for registration purpose.
-            CurrentUser = _userRepository.GetById(1).Name;
-            if (_userRepository.GetAll() != null)
+            var currentUser = _userRepository.GetById(1);
+            if (currentUser != null)
             {
+                CurrentUser = currentUser.Name;
                 MyBoooks myBoooks = new MyBoooks();
                 myBoooks.Show();
             }

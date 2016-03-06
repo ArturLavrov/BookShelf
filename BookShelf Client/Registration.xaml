@@ -41,11 +41,11 @@
             <Label Style="{StaticResource CloseBuutonStyle}" Grid.Row="0"  Grid.Column="1" Content="X" BorderThickness="0" Cursor="" Margin="0,0,20,0" Padding="3,5,5,5" FlowDirection="RightToLeft"/>
             <Label Style="{StaticResource UniversallabelStyle}" Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" Margin="20" Content ="Wellcome" FontFamily="Blackadder ITC" FontSize="48" HorizontalContentAlignment="Center"/>
             <Label Style="{StaticResource UniversallabelStyle}"   Grid.Row="2" Grid.Column="0" Margin="10,10,10,10" Content="NickName" HorizontalContentAlignment="Center" FontSize="18"/>
-            <TextBox Grid.Row="2" Foreground="SaddleBrown" Grid.Column="1" Margin="10,10,30,10" Background="Transparent" HorizontalContentAlignment="Center" BorderBrush="SaddleBrown" BorderThickness="0,0,0,1"/>
+            <TextBox Grid.Row="2" Foreground="SaddleBrown" Grid.Column="1" Margin="10,10,30,10" Background="Transparent" HorizontalContentAlignment="Center" BorderBrush="SaddleBrown" BorderThickness="0,0,0,1" Text="{Binding UserName}"/>
             <Label Style="{StaticResource UniversallabelStyle}" Grid.Row="3"  Grid.Column="0" Margin="10" Content="Password" HorizontalContentAlignment="Center" FontSize="18"/>
-            <PasswordBox Grid.Row="3" Foreground="SaddleBrown" Grid.Column="1" Background="Transparent"  BorderBrush="SaddleBrown" MaxLength="99" Margin="10,10,30,10" BorderThickness="0,0,0,1"/>
+            <TextBox Grid.Row="3" Foreground="SaddleBrown" Grid.Column="1" Background="Transparent"  BorderBrush="SaddleBrown" MaxLength="99" Margin="10,10,30,10" BorderThickness="0,0,0,1" Text="{Binding UserPassword}" />
             <Label  Style="{StaticResource UniversallabelStyle}" Grid.Row="4" Grid.Column="0" Margin="10" Content="E-mail" HorizontalContentAlignment="Center"  FontSize="18"/>
-            <TextBox Grid.Row="4" Foreground="SaddleBrown" Grid.Column="1" Background="Transparent" BorderBrush="SaddleBrown" Margin="10,10,30,10" BorderThickness="0,0,0,1"/>
+            <TextBox Grid.Row="4" Foreground="SaddleBrown" Grid.Column="1" Background="Transparent" BorderBrush="SaddleBrown" Margin="10,10,30,10" BorderThickness="0,0,0,1" Text="{Binding UserEmail}"/>
             <CheckBox Grid.Row="5" Foreground="SaddleBrown" Grid.Column="1" Margin="10" Content="Remember me" FontSize="18" FontStyle="Italic" FontFamily="Bell MT"/>
             <Button Grid.Row="6" Style="{StaticResource ToolBarBuuton}" Foreground="SaddleBrown" Grid.Column="0" Margin="90,50,90,90" Grid.ColumnSpan="2" Content="Sign In" FontFamily="Bell MT" FontWeight="Bold" FontSize="16" Command="{Binding SignInCommand }" />
             <Button Grid.Row="6" Style="{StaticResource ToolBarBuuton}" Foreground="SaddleBrown" Grid.Column="0" Margin="90,70,90,20" Grid.ColumnSpan="2" Content="t" FontFamily="Bell MT" FontWeight="Bold" FontSize="26" Command="{Binding TwitterSignInCommand}"/>

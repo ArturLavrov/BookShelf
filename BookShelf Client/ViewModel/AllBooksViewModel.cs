@@ -80,7 +80,6 @@ namespace BookShelf_Client.ViewModel
         public AllBooksViewModel()
         {
             GetAllBooks();
-            ///TODO Use Lazy Loading instead of this.Something like this:
             GetAllCategories();
         }
 
@@ -99,14 +98,14 @@ namespace BookShelf_Client.ViewModel
         }
         private void AddBook()
         {
+            BookServices bookServices = new BookServices();
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 Filter = _searchfilter
             };
             openFileDialog.ShowDialog();
-            
-            
-            _pathToFile = Path.GetFullPath(openFileDialog.FileName);
+
+            _pathToFile = bookServices.MoveBookToBookShelfFolder(Path.GetFullPath(openFileDialog.FileName));
 
             FileInfo fileToAdd = new FileInfo(_pathToFile);
             int size = (int)fileToAdd.Length;
