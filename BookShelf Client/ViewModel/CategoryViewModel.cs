@@ -78,8 +78,8 @@ namespace BookShelf_Client.ViewModel
         private void GetBooksByCategory()
         {
             if (_selectedCategory == null) return;
-            var concreteCategory = _categoriesRepository.GetByQery(q => q.Name == _selectedCategory.Name);
-            Books = new ObservableCollection<Book>(concreteCategory.FirstOrDefault().Books);
+            var concreteCategory = _categoriesRepository.GetById(_selectedCategory.CategoryId);
+            Books = new ObservableCollection<Book>(concreteCategory.Books);
         }
 
         private void DeleteCategory()

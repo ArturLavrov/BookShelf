@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -18,11 +19,9 @@ namespace BookShelf_Client.ViewModel
         private ReadersContext _readersContext;
         private IRepository<Book> _bookRepository;
         private IRepository<Category> _categoriesRepository; 
-        //private IRepository<User> _userRepository;
-        //private User _user;
         private Book _selectedBook;
         private Category _selectedCategory;
-        private const string _searchfilter = "PDF files (*.pdf*)|*.pdf|DjVu files (*.djvu)|*.djvu";
+        private const string Searchfilter = "PDF files (*.pdf*)|*.pdf|DjVu files (*.djvu)|*.djvu";
         private string _pathToFile;
         private string _searchfield;
         private string _pathtobookimage;
@@ -79,11 +78,11 @@ namespace BookShelf_Client.ViewModel
         }
         public AllBooksViewModel()
         {
-            GetAllBooks();
+            GetAllUserBooks();
             GetAllCategories();
         }
 
-        private void GetAllBooks()
+        private void GetAllUserBooks()
         {
             _bookRepository = IoCManager.Kernel.Get<IRepository<Book>>();
             var allbooks = _bookRepository.GetAll();
@@ -101,7 +100,7 @@ namespace BookShelf_Client.ViewModel
             BookServices bookServices = new BookServices();
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                Filter = _searchfilter
+                Filter = Searchfilter
             };
             openFileDialog.ShowDialog();
 
@@ -138,36 +137,29 @@ namespace BookShelf_Client.ViewModel
 
         private void AddBookToSelectedCategory()
         {
-            var repository  = _categoriesRepository.GetByQery(q => q.Name == _selectedCategory.Name);
-            repository.FirstOrDefault().Books.Add(_selectedBook);
+            var repository  = _categoriesRepository.GetById(_selectedCategory.CategoryId);
+            repository.Books.Add(_selectedBook);
             _categoriesRepository.SaveChanges();
         }
         private void DeleteBook()
         {
             _bookRepository.Delete(_selectedBook);
             _bookRepository.SaveChanges();
-            ImageService service = new ImageService();
-            service.DeleteBookPicture(_selectedBook.PathToBookImg);
+            DeleteBookCover();
             var allbooks = _bookRepository.GetAll();
             Books = new ObservableCollection<Book>(allbooks);
         }
 
-        private void SearchInBooks()
+        private void DeleteBookCover()
         {
-            if (Control.IsKeyLocked(Keys.CapsLock))
-            {
-                //TODO Remove duplicate code 'Books = new ObservableCollection<Book>(bookfilterlist)'.Write after if;
-                string mask = SearchField;
-                var bookfilterlist = _books.Where(b => b.Name.Contains(mask) || b.Author.Contains(mask)).ToList();
-                Books = new ObservableCollection<Book>(bookfilterlist);
-            }
-            else
-            {
-                var bookfilterlist = _books.Where(b => b.Name.Contains(SearchField) || b.Author.Contains(SearchField)).ToList();
-                Books = new ObservableCollection<Book>(bookfilterlist);
-            }
-
-            
+            ImageService service = new ImageService();
+            service.DeleteBookPicture(_selectedBook.PathToBookImg);
+        }
+        private void SearchInBooks()
+        {  
+            string mask = SearchField.ToLower();
+            var bookfilterlist = _books.Where(b => b.Name.Contains(mask) || b.Author.Contains(mask)).ToList();
+            Books = new ObservableCollection<Book>(bookfilterlist);
         }
         private void ReadBook()
         {

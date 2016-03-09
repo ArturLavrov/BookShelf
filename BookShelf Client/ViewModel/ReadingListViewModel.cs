@@ -1,7 +1,9 @@
 ﻿using System.Windows;
 using BookShelf.DAL;
 using BookShelf.Entities;
+using BookShelf.IoC;
 using MVVMCommon;
+using Ninject;
 using ICommand = System.Windows.Input.ICommand;
 namespace BookShelf_Client.ViewModel
 {
@@ -24,7 +26,7 @@ namespace BookShelf_Client.ViewModel
             get { return _readinglistContent; }
             set
             {
-                _readinglistContent = value;
+                _readinglistContent = _readinglistContent != null ? value : "This is Your Readin list";
                 NotifyPropertyChanged("ReadingListContent");
             }
         }
@@ -37,9 +39,9 @@ namespace BookShelf_Client.ViewModel
 
         private void LoadReadingList()
         {
-            //_userRepository = IoCManager.Kernel.Get<IRepository<User>>();
-            //_user = _userRepository.GetById(1);
-            //ReadingListContent = _user.ReadingList.RadingList;
+            _userRepository = IoCManager.Kernel.Get<IRepository<User>>();
+            _user = _userRepository.GetById(1);
+            _readinglistContent = _user.ReadingList.RadingList;
         }
 
         private void SaveReadingList()
