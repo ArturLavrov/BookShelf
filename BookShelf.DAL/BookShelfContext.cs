@@ -4,6 +4,7 @@ using BookShelf.Entities;
 
 namespace BookShelf.DAL
 {
+    //TODO: test integration with TaskManager
     public class BookShelfContext : DbContext, IBookShelfContext
     {
         public IDbSet<Book> Books { get; set; }
